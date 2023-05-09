@@ -1,15 +1,31 @@
 package com.example.employeemap;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
-public class EmployeeMap {
+public class EmployeeMap  {
+    @JsonProperty("firstName")
     private String firstname;
+    @JsonProperty("lastName")
     private String lastName;
+    private int salary;
+    private int department;
 
 
-    public EmployeeMap(String name, String lastName) {
-        this.firstname = name;
+    public EmployeeMap(String firstname, String lastName, int salary, int department) {
+        this.firstname = firstname;
         this.lastName = lastName;
+        this.salary = salary;
+        this.department = department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public int getDepartment() {
+        return department;
     }
 
     public String getFirstname() {
@@ -21,7 +37,7 @@ public class EmployeeMap {
     }
 
     public String getFullName() {
-        return firstname + " " + lastName;
+        return firstname + " " + lastName ;
     }
 
     @Override
@@ -40,8 +56,10 @@ public class EmployeeMap {
     @Override
     public String toString() {
         return "EmployeeMap{" +
-                "name='" + firstname + '\'' +
+                "firstname='" + firstname + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
                 '}';
     }
 }

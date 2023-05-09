@@ -16,19 +16,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeMap createEmployee(String firstName, String lastName) {
-        EmployeeMap employee = new EmployeeMap(firstName, lastName);
+    public EmployeeMap createEmployee(String firstName, String lastName,int salary,int department) {
+        EmployeeMap employee = new EmployeeMap(firstName,lastName,salary,department);
         if (employeeMap.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("EmployeeAlreadyAdded");
         } else {
-            this.employeeMap.put(employee.getFullName(),employee);
+            this.employeeMap.put(employee.getFullName(), employee);
         }
         return employee;
     }
 
     @Override
-    public EmployeeMap removeEmployee(String firstname, String lastName) {
-        EmployeeMap employee = new EmployeeMap(firstname, lastName);
+    public EmployeeMap removeEmployee(String firstname, String lastName,int salary,int department) {
+        EmployeeMap employee = new EmployeeMap(firstname, lastName,salary,department);
         if (employeeMap.containsKey(employee.getFullName())) {
             return employeeMap.remove(employee.getFullName());
         }
@@ -36,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeMap findEmployee(String firstname, String lastName) {
-        EmployeeMap employee = new EmployeeMap(firstname, lastName);
+    public EmployeeMap findEmployee(String firstname, String lastName,int salary,int department) {
+        EmployeeMap employee = new EmployeeMap(firstname, lastName,salary,department);
         if (employeeMap.containsKey(employee.getFullName())) {
             return employeeMap.get(employee.getFullName());
         }
@@ -48,4 +48,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Collection<EmployeeMap> showAllEmployees() {
         return Collections.unmodifiableCollection(employeeMap.values());
     }
+
+
+    public Map<String,EmployeeMap> collection() {
+        return employeeMap;
+    }
+
+
 }
